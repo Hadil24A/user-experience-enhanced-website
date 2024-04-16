@@ -54,7 +54,6 @@ html {
     var(--profile-2),
     var(--profile-3)
   );
-  }
 
   --menu-overlay-bg: rgba(41, 41, 41, 0.95);
 
@@ -75,6 +74,7 @@ html {
 
   /* border radius */
   --border: 8px; 
+}
 }
 
 @font-face {
@@ -113,7 +113,7 @@ html {
   ||  ||  \\_//  ||    || ||___    ||    || ||  \\_|| ||___*/
 
 
-  .homescreen section {
+.homescreen section {
     align-items: center;
     color: var(--menu-clr);
     display: flex;
@@ -126,24 +126,29 @@ html {
     margin-top: 2em;
     padding: 1em;
   }
-  .listeningTimer {
+
+.listeningTimer {
     counter-reset: p calc( var(--p) );
   }
-  .listeningTimer::after {
-    height: 2em;
+
+.listeningTimer::after {
+    color: var(--menu-clr);
     content: counter(p) "%";
     font-size:20px;
     font-variant:tabular-nums;
-    color: var(--menu-clr);
+    height: 2em;
   }
-  .listeningTimer:hover {
+
+.listeningTimer:hover {
     --p:100;
     transition:--p 10s linear;
   }
-  .homescreen section p {
+
+.homescreen section p {
     color: var(--menu-clr);
   }
-  @property --p {
+
+@property --p {
     syntax:"<number>";
     inherits:true;
     initial-value:0;
@@ -170,23 +175,23 @@ html {
     width: 15.5em;
   }
 
-  .muis {
+.muis {
     position: absolute;
     bottom: 3em;
     left: 42%; 
   }
 
-  .muis:hover {
+.muis:hover {
     animation: wiggle 1s infinite;
   }
 
-  @keyframes wiggle {
+@keyframes wiggle {
     0% { transform: translate(0, 0) rotate(0deg); }
     25% { transform: translate(5px, 5px) rotate(5deg); }
     50% { transform: translate(0, 0) rotate(0eg); }
     75% { transform: translate(-5px, 5px) rotate(-5deg); }
     100% { transform: translate(0, 0) rotate(0deg); }
-  }s
+  }
 
 /*___   ____ __  __  ____ ____   ___  __   
  // \\ ||    ||\ || ||    || \\ // \\ ||   
@@ -199,11 +204,13 @@ h1 {
       padding: 1em;
       text-align: center;
   }
+
 h2 {
     color: var(--active-menu-bg);
     font-size: 28px;
     padding-left: 1em;
 }
+
 h3,
 h4,
 h5 {
@@ -211,10 +218,12 @@ h5 {
     font-size: 20px;
     padding-left: 1em;
 }
+
 p {
     color: var(--menu-bg);
     font-size: 16px;
 }
+
 a {
     color: var(--active-menu-bg);
     cursor: pointer;
@@ -244,7 +253,6 @@ button p {
 .navigatie {
     background: var(--menu-bg);
     border: none;
-    /* border-radius: 16px; */
     border-radius: var(--border); 
     bottom: 2em;
     cursor: pointer;
@@ -265,21 +273,21 @@ button p {
 
 .navigatie.active .bar:nth-child(2) {
   opacity: 0;
-}
+  }
 
 .navigatie.active .bar:nth-child(1) {
   background-color: var(--active-menu-clr);
   transform: translateY(8px) rotate(45deg);
-}
+  }
 
 .navigatie.active .bar:nth-child(3) {
   background-color: var(--active-menu-clr);
   transform: translateY(-8px) rotate(-45deg);
-}
+  }
 
 .home-menu {
   visibility: hidden;
-}
+  }
 
 .home-menu-active {
     background-color: var(--menu-overlay-bg);
@@ -426,8 +434,7 @@ dialog p {
     position: absolute;
     width: max-content;
   }
-
-/* ------------------ ADD A PLAYLIST ----------------------------------------------------------------------------------------------------------------------- */
+/* ------------------------------------------------------------- ADD A PLAYLIST -------------------------------------------------------------- */
 .newPlaylistPage h1 {
   color: var(--active-menu-bg);
   font-size: 32px;
@@ -460,7 +467,8 @@ form h2 {
     width: max-content;
   }
 
-#submitPL, #showPL {
+#submitPL, 
+#showPL {
     background: none;
     border: 1px solid var(--menu-clr);
     border-radius: var(--border);
@@ -475,19 +483,19 @@ form h2 {
   }
 
 #showPL {
-  padding: 0.2em;
+    padding: 0.2em;
     position: absolute;
     right: 1em;
     top: 2em;
     width: max-content;
   }
 
-  .newPlaylistPage img {
+.newPlaylistPage img {
     display: none;
     width: 100%;
   }
 
-  form input {
+form input {
     border: none;
     border-radius: var(--border);
     display: flex;
@@ -498,7 +506,7 @@ form h2 {
     width: 20em;
 }
 
-  form:invalid [type="submit"] {
+form:invalid [type="submit"] {
     pointer-events: none;
     color: grey;
 }
@@ -731,8 +739,3 @@ select {
     margin: 0.5em;
     padding: 0.2em;
   }
-
-/* ___  ___  ___  __ __  ____     ___     ____  __     ___  _  _ __    __  __  ______
-    ||\\//|| // \\ || // ||       // \\    || \\ ||    // \\ \\// ||    || (( \ | || |
-    || \/ || ||=|| ||<<  ||==     ||=||    ||_// ||    ||=||  )/  ||    ||  \\    ||  
-    ||    || || || || \\ ||___    || ||    ||    ||__| || || //   ||__| || \_))   ||  */

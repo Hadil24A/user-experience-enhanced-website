@@ -9,27 +9,23 @@
         <h1>All stories</h1>
         <input type="search" placeholder="Search for stories">
         <fieldset class="filters">
-            <!-- <label for="selectAnimal">Choose animal</label> -->
             <select name="select" id="select1">
-                <option disabled selected value>Animal</option>
+                <option disabled>Animal</option>
             </select>
 
-            <!-- <label for="selectSeason">Choose season</label> -->
             <select name="select" id="select2">
-                <option disabled selected value>Season</option>
+                <option disabled>Season</option>
             </select>
 
-            <!-- <label for="selectLanguage">Choose language</label> -->
             <select name="select" id="select3">
-                <option disabled selected value>Language</option>
+                <option disabled>Language</option>
                 <% language.forEach(language => { %>
-                <option><%=language.language%></option>
+                    <option><%=language.language%></option>
                 <% }) %>
             </select>
 
-            <!-- <label for="selectSort">Sort on</label> -->
             <select name="select" id="select4">
-                <option disabled selected value>Sorting</option>
+                <option disabled>Sorting</option>
                 <option value="a-z">A-Z</option>
                 <option value="z-a">Z-A</option>
             </select>

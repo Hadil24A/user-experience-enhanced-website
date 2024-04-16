@@ -14,12 +14,12 @@
     <section>
         <h2>Own playlist</h2>
         <ul class="ownPlaylist">
-                <a href="/add-a-playlist">
-                    <li class="makeAPlaylistBtn"> <%- include('./partials/plusSVG') %>
-                        <p>Make a playlist!</p>
-                        <p>Add your favourite stories in one playlist</p>
-                    </li>
-                </a>
+            <a href="/add-a-playlist">
+                <li class="makeAPlaylistBtn"> <%- include('./partials/plusSVG') %>
+                    <p>Make a playlist!</p>
+                    <p>Add your favourite stories in one playlist</p>
+                </li>
+            </a>
 
             <% playlist.forEach(playlist => { %>
                 <a href="#">
@@ -35,7 +35,7 @@
             <% }) %>
 
             <% newPlaylists.forEach(newPlaylists => { %>
-            <li><%=newPlaylists%> </li>
+                <li><%=newPlaylists%> </li>
             <% }) %>
         </ul>
     </section>
@@ -49,17 +49,17 @@
                 <button id="languageButton" type="button">  
                     <% if (language.flag) { %>
                     <img src="https://fdnd-agency.directus.app/assets/<%= language.flag %>" alt="flag"> <% } %><p><%- language.language %></p></button>
- 
-                    <% }) %> 
+            <% }) %> 
         </article>
-            <a href="/stories">Show all</a>
+
+        <a href="/stories">Show all</a>
 
         <ul class="stories">
             <% stories.forEach(story => { %>
                 <li>
-                <% if (story.image) { %>
-                <img src="https://fdnd-agency.directus.app/assets/<%= story.image %>"alt="story">
-                <% } %>
+                    <% if (story.image) { %>
+                        <img src="https://fdnd-agency.directus.app/assets/<%= story.image %>"alt="story">
+                     <% } %>
                     <div class="storyInfo">
                         <p><strong><%= story.title %></strong></p>
                         <p><%= story.summary %></p>
@@ -67,13 +67,13 @@
                         <a href="#" class="playStory"> <%- include('./partials/playbutton2SVG') %>
                         <p>3 min. 5sec</p></a>  
                     </div>
-
                     <img src="/images/britishFlag.png" alt="flag" id="storyFlag">
                     <button class="downloadStory"> <%- include('./partials/downloadSVG') %> </button>
                     <button class="addToPlaylist"> <%- include('./partials/addSVG') %> </button>
                 </li>
-            <% }) %>
+            <% }) %> 
         </ul>
+        
         <div class="pages">
             <button id="previous"><</button>
             <button id="next">></button>
