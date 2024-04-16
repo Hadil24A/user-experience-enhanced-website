@@ -1,0 +1,738 @@
+*,
+html {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: "Poppins";
+}
+
+/*___ __ __  __  ______   ___   ___  ___    ____  ____    ___   ____   ____ ____  ______ __  ____  __ 
+  //   || || (( \ | || |  // \\  ||\\//||    || \\ || \\  // \\  || \\ ||    || \\ | || | || ||    (( \
+ ((    || ||  \\    ||   ((   )) || \/ ||    ||_// ||_// ((   )) ||_// ||==  ||_//   ||   || ||==   \\ 
+  \\__ \\_// \_))   ||    \\_//  ||    ||    ||    || \\  \\_//  ||    ||___ || \\   ||   || ||___ \_))*/
+
+:root {
+  /* BACKGROUND COLOURS */
+  --method-1: rgb(66, 14, 73);
+  --method-2: rgb(49, 7, 62);
+  --method-3: rgb(9, 21, 65);
+
+  --statistics-1: rgba(33, 155, 155, 1);
+  --statistics-2: rgba(27, 112, 112, 1);
+  --statistics-3: rgb(27, 112, 112);
+
+  --testing-1: rgba(33, 89, 155, 1);
+  --testing-2: rgba(27, 61, 112, 1);
+  --testing-3: rgb(27, 61, 112);
+
+  --profile-1: rgba(240, 119, 93, 1);
+  --profile-2: rgba(180, 87, 81, 1);
+  --profile-3: rgb(180, 87, 81);
+
+  @supports ( background: linear-gradient(in oklch, red 0 0) ) {
+
+  --method-bg: linear-gradient(
+    var(--method-1),
+    var(--method-2),
+    var(--method-3)
+  );
+
+  --statistics-bg: linear-gradient(
+    var(--statistics-1),
+    var(--statistics-2),
+    var(--statistics-3)
+  );
+  
+  --testing-bg: linear-gradient(
+    var(--testing-1),
+    var(--testing-2),
+    var(--testing-3)
+  );
+
+  --profile-bg: linear-gradient(
+    var(--profile-1),
+    var(--profile-2),
+    var(--profile-3)
+  );
+  }
+
+  --menu-overlay-bg: rgba(41, 41, 41, 0.95);
+
+  /* MENU COLOURS */
+  --menu-bg: #494949;
+  --menu-clr: #f8f8f8;
+  --active-menu-bg: #fbfbfb;
+  --active-menu-clr: #282828;
+
+  --home-btn-bg: #3f92b6;
+  --testing-btn-bg: #599ae7;
+  --lessons-btn-bg: #954be2;
+  --statistics-btn-bg: #06a192;
+  --profile-btn-bg: #fd8c73;
+
+  --btn-bg: #9264f4;
+  --contrast: #6990BF;
+
+  /* border radius */
+  --border: 8px; 
+}
+
+@font-face {
+    font-family: "Poppins";
+    src: url(/font/Poppins-Regular.ttf);
+  }
+@font-face {
+    font-family: "PoppinsBold";
+    src: url(/font/Poppins-SemiBold.ttf);
+  }
+
+/* BACKGROUNDS FOR DIFFERENT PAGES */
+
+.homescreen {
+    background-image: url(/images/home.png);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 100dvh;  
+  }
+.lessonsPage {
+    background: var(--method-bg);
+    height: 100%;
+    width: 100%;
+  }
+.newPlaylistPage {
+    background: var(--method-bg);
+    height: 100vh;
+    overflow: hidden;
+    width: 100vw;
+  }
+
+/*__  __   ___   ___  ___  ____    ____   ___    ___   ____
+  ||  ||  // \\  ||\\//|| ||       || \\ // \\  // \\ ||   
+  ||==|| ((   )) || \/ || ||==     ||_// ||=|| (( ___ ||== 
+  ||  ||  \\_//  ||    || ||___    ||    || ||  \\_|| ||___*/
+
+
+  .homescreen section {
+    align-items: center;
+    color: var(--menu-clr);
+    display: flex;
+    flex-direction: column;
+    border: var(--menu-clr) 1px solid;
+    border-bottom: none;
+    border-radius: 20px;
+    width: 25em;
+    margin: auto;
+    margin-top: 2em;
+    padding: 1em;
+  }
+  .listeningTimer {
+    counter-reset: p calc( var(--p) );
+  }
+  .listeningTimer::after {
+    height: 2em;
+    content: counter(p) "%";
+    font-size:20px;
+    font-variant:tabular-nums;
+    color: var(--menu-clr);
+  }
+  .listeningTimer:hover {
+    --p:100;
+    transition:--p 10s linear;
+  }
+  .homescreen section p {
+    color: var(--menu-clr);
+  }
+  @property --p {
+    syntax:"<number>";
+    inherits:true;
+    initial-value:0;
+  }
+
+.start-text {
+    background: var(--menu-clr);
+    border-radius: var(--border);
+    cursor: pointer;
+    padding: 0.5em;
+    width: 14em;
+    margin: auto;
+    margin-top: 6em;
+  }
+
+#start {
+    background: var(--lessons-btn-bg);
+    border: none;
+    border-radius: var(--border);
+    color: var(--menu-clr);
+    cursor: pointer;
+    height: 2em;
+    margin-top: 1em;
+    width: 15.5em;
+  }
+
+  .muis {
+    position: absolute;
+    bottom: 3em;
+    left: 42%; 
+  }
+
+  .muis:hover {
+    animation: wiggle 1s infinite;
+  }
+
+  @keyframes wiggle {
+    0% { transform: translate(0, 0) rotate(0deg); }
+    25% { transform: translate(5px, 5px) rotate(5deg); }
+    50% { transform: translate(0, 0) rotate(0eg); }
+    75% { transform: translate(-5px, 5px) rotate(-5deg); }
+    100% { transform: translate(0, 0) rotate(0deg); }
+  }s
+
+/*___   ____ __  __  ____ ____   ___  __   
+ // \\ ||    ||\ || ||    || \\ // \\ ||   
+(( ___ ||==  ||\\|| ||==  ||_// ||=|| ||   
+ \\_|| ||___ || \|| ||___ || \\ || || ||__| */
+
+h1 {
+      color: var(--active-menu-bg);
+      font-size: 32px;
+      padding: 1em;
+      text-align: center;
+  }
+h2 {
+    color: var(--active-menu-bg);
+    font-size: 28px;
+    padding-left: 1em;
+}
+h3,
+h4,
+h5 {
+    color: var(--active-menu-bg);
+    font-size: 20px;
+    padding-left: 1em;
+}
+p {
+    color: var(--menu-bg);
+    font-size: 16px;
+}
+a {
+    color: var(--active-menu-bg);
+    cursor: pointer;
+    font-size: 16px;
+    text-decoration: none;
+}
+
+button p {
+    color: var(--menu-clr);
+  }
+
+/*__  __  ___  __ __ __   ___   ___  ______ __   ___   __  __
+  ||\ || // \\ || || ||  // \\ // \\ | || | ||  // \\  ||\ ||
+  ||\\|| ||=|| \\ // || (( ___ ||=||   ||   || ((   )) ||\\||
+  || \|| || ||  \V/  ||  \\_|| || ||   ||   ||  \\_//  || \|| */
+
+.bar {
+    -webkit-transition: all 0.3s ease-in-out;
+    background-color: var(--menu-clr);
+    display: block;
+    height: 3px;
+    margin: 5px auto;
+    transition: all 0.3s ease-in-out;
+    width: 25px;
+  }
+
+.navigatie {
+    background: var(--menu-bg);
+    border: none;
+    /* border-radius: 16px; */
+    border-radius: var(--border); 
+    bottom: 2em;
+    cursor: pointer;
+    margin: 0em 1em 0em 1em;
+    padding: 0.5em;
+    position: fixed;
+    right: 1em;
+    z-index: 999;
+  }
+
+.navigatie {
+    display: block;
+  }
+  
+.navigatie.active {
+    background-color: var(--active-menu-bg);
+  }
+
+.navigatie.active .bar:nth-child(2) {
+  opacity: 0;
+}
+
+.navigatie.active .bar:nth-child(1) {
+  background-color: var(--active-menu-clr);
+  transform: translateY(8px) rotate(45deg);
+}
+
+.navigatie.active .bar:nth-child(3) {
+  background-color: var(--active-menu-clr);
+  transform: translateY(-8px) rotate(-45deg);
+}
+
+.home-menu {
+  visibility: hidden;
+}
+
+.home-menu-active {
+    background-color: var(--menu-overlay-bg);
+    border: none;
+    visibility: visible;
+    z-index: 648;
+  }
+
+dialog {
+    display: grid;
+    gap: 50px;
+    grid-template-columns: auto auto;
+    height:  100%;
+    justify-content: center;
+    padding: 3em;
+    width: 100%;
+  }
+
+dialog a {
+    align-items: center;
+    border-radius: var(--border); 
+    color: var(--menu-clr);
+    display: flex;
+    flex-direction: column;
+    height: 113px;
+    justify-content: center;
+    padding: 1em;
+    text-decoration: none;
+  }
+
+dialog a:nth-of-type(1) {
+    background: var(--home-btn-bg);
+  }
+
+dialog a:nth-of-type(2) {
+    background: var(--testing-btn-bg);
+  }
+
+dialog a:nth-of-type(3) {
+    background: var(--lessons-btn-bg);
+  }
+
+dialog a:nth-of-type(4) {
+    background: var(--statistics-btn-bg);
+  }
+
+dialog a:nth-of-type(5) {
+    background: var(--profile-btn-bg);
+  }
+
+dialog p {
+    color: var(--active-menu-bg);
+  }
+
+.activePage {
+    border: solid 5px var(--active-menu-bg);
+  }
+
+/*__     ____  __   __    ___   __  __  __ 
+  ||    ||    (( \ (( \  // \\  ||\ || (( \
+  ||    ||==   \\   \\  ((   )) ||\\||  \\ 
+  ||__| ||___ \_)) \_))  \\_//  || \|| \_)) */
+
+.lessonsPage h1 {
+  color: var(--active-menu-bg);
+  font-size: 32px;
+  padding: 1em;
+  text-align: center;
+}
+
+.lessonsPage section:nth-of-type(1) {
+  align-items: center;
+  width: 100%;
+  justify-content: center;
+  display: flex;
+  flex-direction: column;
+}
+  
+.ownPlaylist .makeAPlaylistBtn {
+  background: rgb(73, 67, 117, 0.9);
+  border: none;
+  cursor: pointer;
+}
+
+.ownPlaylist .makeAPlaylistBtn svg {
+  fill: var(--menu-clr);
+  margin: 0.5em 2.5em 0 2.5em;
+}
+
+.ownPlaylist .makeAPlaylistBtn svg:hover {
+  fill: var(--btn-bg);
+}
+
+.ownPlaylist .makeAPlaylistBtn p:nth-of-type(1) {
+  color: var(--active-menu-bg);
+  padding: 0.5em;
+  width: max-content;
+}
+
+.ownPlaylist .makeAPlaylistBtn p:nth-of-type(1):hover,
+.ownPlaylist .makeAPlaylistBtn p:nth-of-type(2):hover {
+  color: var(--btn-bg);
+}
+
+.ownPlaylist .makeAPlaylistBtn p:nth-of-type(2) {
+  color: var(--active-menu-bg);
+  font-size: 13px;
+  margin-top: 1.5em;
+  text-align: center;
+}
+
+.ownPlaylist,
+.playlist {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    list-style: none;
+  }
+
+.ownPlaylist li,
+.playlist li {
+    background: var(--menu-clr);
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    height: 14em;
+    margin: 2em;
+    padding: 0.5em;
+    position: relative;
+    width: 10em;
+  }
+
+.ownPlaylist img,
+.playlist img {
+    border-radius: var(--border);
+    height: 7.5em;
+    width: 9em;
+  }
+
+.playPlaylist {
+    bottom: 0.5em;
+    display: flex;
+    flex-direction: row;
+    position: absolute;
+    width: max-content;
+  }
+
+/* ------------------ ADD A PLAYLIST ----------------------------------------------------------------------------------------------------------------------- */
+.newPlaylistPage h1 {
+  color: var(--active-menu-bg);
+  font-size: 32px;
+  padding: 1em;
+  text-align: center;
+}
+
+#backIcon {
+    background: none;
+    border: none;
+    cursor: pointer;
+    height: max-content;
+    left: 1em;
+    position: absolute;
+    top: 1em;
+    width: max-content;
+    z-index: 960;
+  }
+
+form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 3em;
+  }
+
+form h2 {
+    display: flex;
+    justify-content: center;
+    width: max-content;
+  }
+
+#submitPL, #showPL {
+    background: none;
+    border: 1px solid var(--menu-clr);
+    border-radius: var(--border);
+    color: var(--menu-clr);
+    cursor: pointer;
+    height: 2.5em;
+    padding: 0.2em;
+  }
+
+#submitPL {
+    width: 20em;
+  }
+
+#showPL {
+  padding: 0.2em;
+    position: absolute;
+    right: 1em;
+    top: 2em;
+    width: max-content;
+  }
+
+  .newPlaylistPage img {
+    display: none;
+    width: 100%;
+  }
+
+  form input {
+    border: none;
+    border-radius: var(--border);
+    display: flex;
+    height: 3em;
+    justify-content: center;
+    margin: 1em;
+    padding: 0.2em;
+    width: 20em;
+}
+
+  form:invalid [type="submit"] {
+    pointer-events: none;
+    color: grey;
+}
+
+.image-preview-container {
+  background: var(--green);
+  background-position: center;
+  border: 0.3em solid var(--menu-clr);
+  cursor: pointer;
+  display: block;
+  margin: 1em;
+  text-align: center;
+  width: 30em;
+  border-radius: 8px;
+}
+
+#image-upload {
+  display: none;
+}
+
+.newPlaylistPage label {
+  display: block;
+  margin-left: auto;
+  cursor: pointer;
+  padding: 5em;
+  color: var(--menu-clr);
+  font-size: 24px;
+}
+/* ---------------------------- EINDE ADD A PLAYLIST -------------------------------------------------------------------------------------------------------------- */
+.heart,
+.redHeart {
+    bottom: 1em;
+    position: absolute;
+    right: 1em;
+  }
+
+.phases {
+    counter-reset: list-counter;
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    margin: 2em;
+    overflow-x: auto;
+    overflow-y: hidden;
+    width: 25em;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  
+  }
+
+#listening,
+#locked {
+    background: var(--contrast);
+    border-radius: var(--border);
+    color: var(--active-menu-bg);
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    margin: 1em;
+    min-width: 20em;
+    padding: 4px;
+  }
+
+ .phases #locked {
+  opacity: 0.7;
+ } 
+
+#listening p,
+#locked p {
+    color: var(--active-menu-bg);
+  }
+
+/* __  ______   ___   ____  __  ____  __ 
+ (( \ | || |  // \\  || \\ || ||    (( \
+  \\    ||   ((   )) ||_// || ||==   \\ 
+ \_))   ||    \\_//  || \\ || ||___ \_)) */
+
+#languageSelect {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 1em;
+  }
+
+#languageButton {
+    background: var(--active-menu-bg);
+    border: none;
+    border-radius: var(--border);
+    display: flex;
+    flex-direction: row;
+    height: 2.5em;
+    margin: 0.5em;
+    padding: 0.3em;
+    width: max-content;
+  }
+
+#languageButton p {
+    color: var(--active-menu-clr);
+  }
+
+#languageButton img {
+    padding: 0.2em 0.2em 0 0;
+  }
+
+section:nth-of-type(3) a {
+    margin: 1em;
+  }
+
+.stories {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+
+.stories li {
+    background: var(--menu-clr);
+    border-radius: var(--border);
+    display: flex;
+    flex-direction: row;
+    height: 8em;
+    margin: 2em;
+    padding: 0.5em;
+    position: relative;
+    width: 28em;
+  }
+
+.stories img {
+    border-radius: var(--border);
+    height: 7em;
+    width: 7em;
+  }
+
+.storyInfo {
+    display: flex;
+    flex-direction: column;
+  }
+
+.stories p:nth-of-type(1) {
+    padding-left: 0.5em;
+  }
+
+.stories p:nth-of-type(2) {
+    font-size: 11px;
+    line-height: 1.3em;
+    padding-left: 0.5em;
+  }
+
+#storyFlag {
+    height: 1em;
+    width: 2.5em;
+  }
+
+.playStory {
+    display: flex;
+    flex-direction: row;
+    gap: 5px;
+    padding: 0.5em 0 0 0.5em;
+    width: max-content;
+  }
+
+.addToPlaylist,
+.downloadStory {
+    background: none;
+    border: none;
+  }
+
+.downloadStory {
+    bottom: 1em;
+    position: absolute;
+    right: 3em;
+  }
+
+.addToPlaylist {
+    bottom: 1.25em;
+    position: absolute;
+    right: 1em;
+  }
+
+.pages {
+    display: flex;
+    flex-direction: row;
+    gap: 3em;
+    justify-content: center;
+  }
+
+#next,
+#previous {
+    background: var(--contrast);
+    border: none;
+    border-radius: var(--border);
+    color: var(--active-menu-bg);
+    height: 2em;
+    width: 4em;
+  }
+
+.back-icon {
+    position: absolute;
+    top: 2.5em;
+  }
+
+/*___  __    __        __  ______   ___   ____  __  ____  __ 
+ // \\ ||    ||       (( \ | || |  // \\  || \\ || ||    (( \
+ ||=|| ||    ||        \\    ||   ((   )) ||_// || ||==   \\ 
+ || || ||__| ||__|    \_))   ||    \\_//  || \\ || ||___ \_))  */
+
+.lessonsPage input {
+    border: none;
+    border-radius: var(--border);
+    display: flex;
+    justify-content: center;
+    margin: 2em;
+    padding: 0.2em;
+    width: 30em;
+  }
+
+input:focus {
+    border: solid 5px var(--btn-bg);
+  }
+
+.filters {
+    border: none;
+    margin: 2em;
+  }
+
+select {
+    background: var(--contrast);
+    border-radius: var(--border);
+    color: var(--active-menu-bg);
+    margin: 0.5em;
+    padding: 0.2em;
+  }
+
+/* ___  ___  ___  __ __  ____     ___     ____  __     ___  _  _ __    __  __  ______
+    ||\\//|| // \\ || // ||       // \\    || \\ ||    // \\ \\// ||    || (( \ | || |
+    || \/ || ||=|| ||<<  ||==     ||=||    ||_// ||    ||=||  )/  ||    ||  \\    ||  
+    ||    || || || || \\ ||___    || ||    ||    ||__| || || //   ||__| || \_))   ||  */

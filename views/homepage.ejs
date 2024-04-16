@@ -1,0 +1,21 @@
+<%- include('./partials/head') %>
+<%- include('./partials/navigatie', {current: '/'}); %>
+    
+    <body class="homescreen">
+      <section>
+        <h1>Today's listening</h1>
+        <div class="listeningTimer"></div>
+        <p>of your 5-minute goal</p>
+      </section>
+
+      <a href="/lessons">
+        <div class="start-text"> 
+          <p>Goodmorning,<br> Shall we start with a story?</p>
+          <button id="start"><p>Let's do it!</p></button>
+        </div>
+      </a>
+
+    <%- include('./partials/muisSVG') %> 
+
+    </body>
+<%- include('./partials/foot') %>

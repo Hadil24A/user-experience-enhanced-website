@@ -1,0 +1,32 @@
+<link rel="stylesheet" href="/style.css" />
+
+    <button class="navigatie"><span class="bar"></span><span class="bar"></span><span class="bar"></span></button>
+    
+    <dialog class="home-menu">
+        <a href="/"<%- current == '/' ? ' class="activePage"' : '' %>> 
+            <%- include('homeNavSVG') %>
+            <p>Home</p>
+        </a>
+        
+        <a href="#"<%- current == '/testing' ? ' class="activePage"' : '' %>> 
+            <%- include('testingNavSVG') %>
+            <p>Testing</p>
+        </a>
+            
+        <a href="/lessons"<%- current == '/lessons' ? ' class="activePage"' : '' %>> 
+            <%- include('lessonsNavSVG') %>
+            <p>Lessons</p>
+        </a>
+
+        <a href="#"<%- current == '/statistics' ? ' class="activePage"' : '' %>> 
+            <%- include('statisticsNavSVG') %>
+            <p>Statistics</p>
+        </a>
+
+        <a href="#"<%- current == '/profile' ? ' class="activePage"' : '' %>> 
+             <%- include('profileNavSVG') %> 
+                <p>Profile</p>
+        </a>
+    </dialog>
+
+

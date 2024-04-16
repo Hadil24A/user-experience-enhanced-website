@@ -1,0 +1,20 @@
+<%- include('./partials/head') %>
+
+<main class="newPlaylistPage">
+    <a href="/lessons" id="backIcon"> <%- include('./partials/backSVG') %> </a>
+   <h1>New Playlist</h1>
+    <form method="post">
+        <div class="image-preview-container">
+            <div class="preview">
+                <img src="#" alt="Preview uploaded image"  id="addImg"> 
+            </div>
+            <label for="image-upload">Selecteer je afbeelding</label>
+            <input type="file" id="image-upload" accept="image/*" onchange="previewImage(event);" />
+        </div>
+        <input id="playlistName" type="text" required placeholder="Name playlist" name="NewPlaylists">
+        <button id="submitPL" >Make playlist</button>
+    </form>
+    <a href="/lessons" type="submit" id="showPL">Show playlists</a>
+</main>
+
+<%- include('./partials/foot') %>
