@@ -423,8 +423,8 @@ dialog p {
 .ownPlaylist img,
 .playlist img {
     border-radius: var(--border);
-    height: 7.5em;
-    width: 9em;
+    height: auto;
+    max-width: 100%;
   }
 
 .playPlaylist {

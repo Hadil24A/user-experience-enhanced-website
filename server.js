@@ -28,10 +28,10 @@ app.get("/", function (request, response) {
       
   app.get("/lessons", function (request, response) {      
     Promise.all([
-      fetchJson('https://fdnd-agency.directus.app/items/tm_story'),
+      fetchJson('https://fdnd-agency.directus.app/items/tm_story?fields=*,image.id,image.height,image.width'),
       fetchJson('https://fdnd-agency.directus.app/items/tm_language'),
-      fetchJson('https://fdnd-agency.directus.app/items/tm_playlist'),
-      fetchJson('https://fdnd-agency.directus.app/items/tm_audio')]).then(([storyData, languageData, playlistData, audioData]) => {   
+      fetchJson('https://fdnd-agency.directus.app/items/tm_playlist?fields=*,image.id,image.height,image.width'),
+      fetchJson('https://fdnd-agency.directus.app/items/tm_audio')]).then(([storyData, languageData, playlistData, audioData]) => {  
       response.render('lessons', {        
         stories: storyData.data, 
         language: languageData.data,
