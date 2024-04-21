@@ -1,10 +1,10 @@
 // 1. OPZETTEN VAN DE WEBSERVER
 
-import express from "express";
+import express, { request } from "express";
 
 import fetchJson from "./helpers/fetch-json.js";
 
-const app = express();
+let app = express();
 
 let newPlaylist = []  // Niewe plylist aanmaken
 
@@ -31,16 +31,43 @@ app.get("/", function (request, response) {
       fetchJson('https://fdnd-agency.directus.app/items/tm_story?fields=*,image.id,image.height,image.width'),
       fetchJson('https://fdnd-agency.directus.app/items/tm_language'),
       fetchJson('https://fdnd-agency.directus.app/items/tm_playlist?fields=*,image.id,image.height,image.width'),
-      fetchJson('https://fdnd-agency.directus.app/items/tm_audio')]).then(([storyData, languageData, playlistData, audioData]) => {  
+      fetchJson('https://fdnd-agency.directus.app/items/tm_audio')
+    ]).then(([storyData, languageData, playlistData, audioData]) => {  
       response.render('lessons', {        
         stories: storyData.data, 
         language: languageData.data,
         playlist: playlistData.data, 
         audio: audioData.data,
-        newPlaylists: newPlaylist})  
+        favourites: favourites, // Pass favourites to the template
+        newPlaylists: newPlaylist
+      });  
     });   
   });
   
+  let favourites = [];
+
+  app.post('/lessons', function(request, response) {
+      response.render('playlist');
+      
+      let action = request.body.action;
+  
+      if (action === 'like') {
+
+          let playlistId = Number(request.params.playlistId);
+          favourites[playlistId] = true;
+      } else if (action === 'unlike') {
+
+          let playlistId = Number(request.params.playlistId);
+          favourites[playlistId] = false;
+      }
+  
+      if (request.body.enhanced) {
+          response.render('playlist');
+      } else {
+          response.redirect(303, '/lessons');
+      }
+  });
+
   app.get("/stories", function (request, response) {      
     Promise.all([
       fetchJson('https://fdnd-agency.directus.app/items/tm_story'),
