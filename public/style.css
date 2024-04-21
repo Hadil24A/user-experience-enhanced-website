@@ -13,6 +13,7 @@ html {
 
 :root {
   /* BACKGROUND COLOURS */
+  --method-0: rgb(88, 12, 73); 
   --method-1: rgb(66, 14, 73);
   --method-2: rgb(49, 7, 62);
   --method-3: rgb(9, 21, 65);
@@ -32,6 +33,7 @@ html {
   @supports ( background: linear-gradient(in oklch, red 0 0) ) {
 
   --method-bg: linear-gradient(
+    var(--method-0),
     var(--method-1),
     var(--method-2),
     var(--method-3)
@@ -55,7 +57,7 @@ html {
     var(--profile-3)
   );
 
-  --menu-overlay-bg: rgba(41, 41, 41, 0.95);
+  --menu-overlay-bg: rgba(41, 41, 41, 0.949);
 
   /* MENU COLOURS */
   --menu-bg: #494949;
@@ -562,7 +564,6 @@ form:invalid [type="submit"] {
 #locked {
     background: var(--contrast);
     border-radius: var(--border);
-    color: var(--active-menu-bg);
     display: flex;
     flex-direction: row;
     justify-content: space-around;
@@ -577,8 +578,8 @@ form:invalid [type="submit"] {
 
 #listening p,
 #locked p {
-    color: var(--active-menu-bg);
-  }
+  color: var(--menu-overlay-bg);
+}
 
 /* __  ______   ___   ____  __  ____  __ 
  (( \ | || |  // \\  || \\ || ||    (( \
