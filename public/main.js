@@ -8,21 +8,26 @@ if (navigatie) {
     });
 }
 
-let input = document.getElementById('image-upload');
-if (input) {
+let imageUpload = document.getElementById('image-upload');
+if (imageUpload) {
     let previewImage = () => {
-        let files = input.files;
+        let files = imageUpload.files;
         if (files && files.length > 0) {
             let fileReader = new FileReader();
-            let preview = document.getElementById('addImg'); 
+            let preview = document.getElementById('addImg');
+            let label = document.querySelector('label[for="image-upload"]'); // Select the label element
             fileReader.onload = function (event) {
+                preview.style.display = 'block';
                 preview.setAttribute('src', event.target.result);
+                label.style.display = 'none'; // Hide the label element
             }
             fileReader.readAsDataURL(files[0]);
         }
     }
-    input.addEventListener("change", previewImage);
+    imageUpload.addEventListener("change", previewImage);
 }
+
+
 
 // let newPlaylist = []
 // newPlaylist.push()

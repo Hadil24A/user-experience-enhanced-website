@@ -106,18 +106,11 @@ body {
     background-repeat: no-repeat;
     height: 100dvh;  
   }
-.lessonsPage {
+.lessonsPage, .newPlaylistPage {
     background: var(--method-bg);
     min-height: 100%;
     width: 100%;
   }
-.newPlaylistPage {
-    background: var(--method-bg);
-    height: 100vh;
-    overflow: hidden;
-    width: 100vw;
-  }
-
 /*__  __   ___   ___  ___  ____    ____   ___    ___   ____
   ||  ||  // \\  ||\\//|| ||       || \\ // \\  // \\ ||   
   ||==|| ((   )) || \/ || ||==     ||_// ||=|| (( ___ ||== 
@@ -512,7 +505,7 @@ header {
     width: 100%;
   }
 
-form input {
+#playlistName {
     border: none;
     border-radius: var(--border);
     display: flex;
@@ -551,6 +544,10 @@ form:invalid [type="submit"] {
   padding: 5em;
   color: var(--menu-clr);
   font-size: 24px;
+}
+
+#addImg {
+  padding: 1em;
 }
 /* ---------------------------- EINDE ADD A PLAYLIST -------------------------------------------------------------------------------------------------------------- */
 .heart,
