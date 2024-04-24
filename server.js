@@ -38,35 +38,34 @@ app.get("/", function (request, response) {
         language: languageData.data,
         playlist: playlistData.data, 
         audio: audioData.data,
-        favourites: favourites, // Pass favourites to the template
+        favourites: favourites,
         newPlaylists: newPlaylist
       });  
     });   
   });
   
-  let favourites = [];
+  let favourites = {};
 
-  app.post('/lessons', function(request, response) {
-      response.render('playlist');
-      
-      let action = request.body.action;
+  app.post('/:playlistId/like-or-unlike', function(request, response) {
+      let playlistId =  Number(request.params.playlistId);
+      let action = request.body.action; 
+      console.log(action, playlistId);
   
       if (action === 'like') {
-
-          let playlistId = Number(request.params.playlistId);
           favourites[playlistId] = true;
       } else if (action === 'unlike') {
-
-          let playlistId = Number(request.params.playlistId);
           favourites[playlistId] = false;
       }
   
-      if (request.body.enhanced) {
-          response.render('playlist');
-      } else {
-          response.redirect(303, '/lessons');
-      }
+      response.redirect(303, '/lessons');
   });
+  
+  
+      // if (request.body.enhanced) {
+      //     response.render('playlist');
+      // } else {
+      //     response.redirect(303, '/lessons');
+      // }
 
   app.get("/stories", function (request, response) {      
     Promise.all([

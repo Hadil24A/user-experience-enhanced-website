@@ -23,10 +23,16 @@
             <% playlist.forEach(playlist => { %>
                 <li>
                     <% if (playlist.image) { %> 
+                        <picture>
+                            <source srcset="https://fdnd-agency.directus.app/assets/<%= playlist.image.id %>.avif" type="image/avif">
+                            <source srcset="https://fdnd-agency.directus.app/assets/<%= playlist.image.id %>.webp" type="image/webp">
                         <img src="https://fdnd-agency.directus.app/assets/<%= playlist.image.id %>" alt="playlist" 
-                            height="<%= playlist.image.height %>" width="<%= playlist.image.width %>"> 
+                            height="<%= playlist.image.height %>" width="<%= playlist.image.width %>">
+                        </picture>
                         <%  } else { %>
-                            <img src=./images/placeholder.png alt="placeholder">
+                            <picture>
+                                <img src="./images/placeholder.png" alt="placeholder">
+                            </picture>
                     <% } %>    
                     <p><%=playlist.title%></p>
                     <a href="#" class="playPlaylist" type="button"><%- include('./partials/playbuttonSVG') %> </a>
@@ -48,8 +54,12 @@
             <% language.forEach(language => { %>
                 <button id="languageButton" type="button">  
                     <% if (language.flag) { %>
-                    <img src="https://fdnd-agency.directus.app/assets/<%= language.flag %>" alt="flag"> <% } %><p><%- language.language %></p></button>
-            <% }) %> 
+                    <picture>
+                        <source srcset="https://fdnd-agency.directus.app/assets/<%= language.flag %>.avif" type="image/avif">
+                        <source srcset="https://fdnd-agency.directus.app/assets/<%= language.flag %>.webp" type="image/webp">
+                            <img src="https://fdnd-agency.directus.app/assets/<%= language.flag %>" alt="flag"> <% } %><p><%- language.language %></p></button>
+                    </picture>
+                <% }) %> 
         </article>
 
         <a href="/stories">Show all</a>
@@ -58,9 +68,15 @@
             <% stories.forEach(story => { %>
                 <li>
                     <% if (story.image) { %>
-                        <img src="https://fdnd-agency.directus.app/assets/<%= story.image.id %>"alt="story" height="<%= story.image.height %>" width="<%= story.image.width %>"> 
+                        <picture>
+                            <source srcset="https://fdnd-agency.directus.app/assets/<%= story.image.id %>.avif" type="image/avif">
+                            <source srcset="https://fdnd-agency.directus.app/assets/<%= story.image.id %>.webp" type="image/webp">
+                                <img src="https://fdnd-agency.directus.app/assets/<%= story.image.id %>"alt="story" height="<%= story.image.height %>" width="<%= story.image.width %>"> 
+                        </picture>
                         <%  } else { %>
-                           <img src=./images/placeholder.png alt="placeholder">
+                        <picture>
+                            <img src=./images/placeholder.png alt="placeholder">
+                        </picture>
                     <% } %> 
                     <div class="storyInfo">
                         <p><strong><%= story.title %></strong></p>
@@ -69,7 +85,9 @@
                         <a href="#" class="playStory"> <%- include('./partials/playbutton2SVG') %>
                         <p>3 min. 5sec</p></a>  
                     </div>
-                    <img src="/images/britishFlag.png" alt="flag" id="storyFlag">
+                    <picture>
+                        <img src="/images/britishFlag.png" alt="flag" id="storyFlag">
+                    </picture>
                     <button class="downloadStory"> <%- include('./partials/downloadSVG') %> </button>
                     <button class="addToPlaylist"> <%- include('./partials/addSVG') %> </button>
                 </li>
@@ -85,63 +103,73 @@
     <!-- LIKED PLAYLISTS -->
 
     <section>
-        <article class="likedPlaylists">
-            <h4>Liked playlists</h4>
-            <a href="#">
-                <% let filteredPlaylist = playlist.filter(playlist => favourites[playlist.id]); %>
-                <% if (filteredPlaylist.length > 0) { %>
-                <ul class="playlist">
-                    <% filteredPlaylist.forEach(playlist => { %>
-                    <li>
-                        <% if (playlist.image) { %> 
-                        <img src="https://fdnd-agency.directus.app/assets/<%= playlist.image.id %>" alt="playlist" 
-                            height="<%= playlist.image.height %>" width="<%= playlist.image.width %>"> 
-                        <%  } else { %>
+        <% playlist.filter((playlist) => favourites[playlist.id]).forEach(playlist => { %>
+            <article class="likedPlaylists">
+              <h4>Liked playlists</h4>
+              <ul class="playlist">
+                <li>
+                  <% if (playlist.image) { %>
+                    <picture>
+                        <source srcset="https://fdnd-agency.directus.app/assets/<%= playlist.image.id %>.avif" type="image.avif">
+                        <source srcset="https://fdnd-agency.directus.app/assets/<%= playlist.image.id %>.webp" type="image.webp">
+                            <img src="https://fdnd-agency.directus.app/assets/<%= playlist.image.id %>" alt="playlist" height="<%= playlist.image.height %>" width="<%= playlist.image.width %>">
+                    </picture>
+                            <% } else { %>
+                    <picture>
                         <img src="./images/placeholder.png" alt="placeholder">
-                        <% } %>    
-                        <p><%= playlist.title %></p>
-                        <a href="#" class="playPlaylist" type="button"><%- include('./partials/playbuttonSVG') %> </a>
-                        <p>31 min. 55sec</p>
-    
-                        <form method="POST" action="/<%= playlist.id %>/like-or-unlike">
-                        <button class="unlike-button" title="unlike playlist" type="submit" name="action" value="unlike">                                        
-                            <%- include('./partials/filledHeartSVG') %>
-                        </button>
-                        </form>
-                    </li>
-                    <% }) %>
-                </ul>
-                <% } else { %>
-                <p class="no-playlist">You currently have no liked playlists</p>
-                <% } %>
-            </a>
-        </article>
+                    </picture>
+                  <% } %>    
+                  
+                  <p><%= playlist.title %></p>
+                  <a href="#" class="playPlaylist" type="button"><%- include('./partials/playbuttonSVG') %> </a>
+                  <p>31 min. 55sec</p>
+          
+                  <form method="POST" action="/<%= playlist.id %>/like-or-unlike">
+                    <input type="hidden" name="action" value="like">
+                    <button class="like-button" title="like playlist" type="submit" name="action" value="like">                                        
+                      <%- include('./partials/filledHeartSVG') %>
+                    </button>
+                  </form>
+                </li>
+              </ul>
+            </article>
+          <% }) %>
+          <% if (!playlist.filter((playlist) => favourites[playlist.id]).length) { %>
+            <p class="no-playlist">You currently have no liked playlists.</p>
+          <% } %>          
     </section>
     
     <!-- SUGGESTED PLAYLISTS -->
     
     <section>
         <h5>Suggested playlists</h5>
-        <a href="#">
-            <% if (playlist.filter(playlistItem => !favourites[playlistItem.id]).length > 0) { %>
-            <ul class="playlist">
-                <% playlist.filter(playlistItem => !favourites[playlistItem.id]).forEach(playlistItem => { %>
+        <% playlist.forEach(playlist => { %>
+            <a href="#">
+                <ul class="playlist">
                     <li>
-                        <% if (playlistItem.image) { %> 
-                            <img src="https://fdnd-agency.directus.app/assets/<%= playlistItem.image.id %>" alt="playlist" 
-                                height="<%= playlistItem.image.height %>" width="<%= playlistItem.image.width %>"> 
+                        <% if (playlist.image) { %> 
+                            <picture>
+                                <source srcset="https://fdnd-agency.directus.app/assets/<%= playlist.image.id %>.avif" type="image.avif">
+                                <source srcset="https://fdnd-agency.directus.app/assets/<%= playlist.image.id %>.webp" type="image.webp">        
+                                    <img src="https://fdnd-agency.directus.app/assets/<%= playlist.image.id %>" alt="playlist" 
+                                height="<%= playlist.image.height %>" width="<%= playlist.image.width %>"> 
+                            </picture>
                         <%  } else { %>
-                            <img src="./images/placeholder.png" alt="placeholder">
+                            <picture>
+                                <img src="./images/placeholder.png" alt="placeholder">
+                            </picture>
                         <% } %>    
-                        <p><%= playlistItem.title %></p>
+                        <p><%= playlist.title %></p>
                         <a href="#" class="playPlaylist" type="button"><%- include('./partials/playbuttonSVG') %> </a>
                         <p>31 min. 55sec</p>
-                        
-                        <form method="POST" action="/<%= playlistItem.id %>/like-or-unlike">
-                            <% if (!favourites[playlistItem.id]) { %>
+    
+                        <form method="POST" action="/<%= playlist.id %>/like-or-unlike">
+                            <% if (!favourites[playlist.id]) { %>
+                                <input type="hidden" name="action" value="like">
                                 <button title="like playlist" type="submit" name="action" value="like">
                                 <%- include('./partials/heartSVG') %>
                                 </button>
+    
                             <% } else { %>
                                 <button class="unlike-button" title="unlike playlist" type="submit" name="action" value="unlike">                                        
                                     <%- include('./partials/filledHeartSVG') %>
@@ -149,16 +177,12 @@
                             <% } %>
                         </form>
                     </li> 
-                <% }) %>
-            </ul>
-            <% } else { %>
+                </ul>
+            </a>
+        <% }) %>
+        <% if (!playlist.length) { %>
             <p class="no-playlist">No suggested playlists available.</p>
-            <% } %>
-        </a>
+        <% } %>
     </section>
-    
-    
-    
-
 </main>
 <%- include('./partials/foot') %>
