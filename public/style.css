@@ -191,19 +191,6 @@ body {
     bottom: 3em;
     left: 42%; 
   }
-
-/* .muis:hover {
-    animation: wiggle 1s infinite;
-  }
-
-@keyframes wiggle {
-    0% { transform: translate(0, 0) rotate(0deg); }
-    25% { transform: translate(5px, 5px) rotate(5deg); }
-    50% { transform: translate(0, 0) rotate(0eg); }
-    75% { transform: translate(-5px, 5px) rotate(-5deg); }
-    100% { transform: translate(0, 0) rotate(0deg); }
-  } */
-
 /*___   ____ __  __  ____ ____   ___  __   
  // \\ ||    ||\ || ||    || \\ // \\ ||   
 (( ___ ||==  ||\\|| ||==  ||_// ||=|| ||   
@@ -362,6 +349,12 @@ dialog p {
   ||    ||==   \\   \\  ((   )) ||\\||  \\ 
   ||__| ||___ \_)) \_))  \\_//  || \|| \_)) */
 
+header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
 .lessonsPage h1 {
   color: var(--active-menu-bg);
   font-size: 32px;
@@ -369,8 +362,11 @@ dialog p {
   text-align: center;
 }
 
+.lessonsPage section {
+  margin-bottom: 1em;
+}
+
 .lessonsPage section:nth-of-type(1) {
-  align-items: center;
   width: 100%;
   justify-content: center;
   display: flex;
@@ -424,7 +420,7 @@ dialog p {
     border-radius: 8px;
     display: flex;
     flex-direction: column;
-    min-height: 14.5em;
+    min-height: 15em;
     margin: 2em;
     padding: 0.5em;
     position: relative;
@@ -442,20 +438,19 @@ dialog p {
     bottom: 0.5em;
     display: flex;
     flex-direction: row;
+    gap: 0.5em;
     position: absolute;
     width: max-content;
   }
 
-li p:nth-of-type(1) {
+.playPlaylist p, .playStory p {
+  font-size: 12px;
+  padding-top: 0.3em;
+}
+
+.playlistTitle {
     font-weight: bold;
   }
-
-li p:nth-of-type(2):not(.stories), li p:nth-of-type(2):not(.makeAPlaylistBtn), li p:nth-of-type(2):not(#listening p) {
-  font-size: 13px;
-  position: absolute;
-  bottom: 0.5em;
-  left: 3em;
-}
 /* ------------------------------------------------------------- ADD A PLAYLIST -------------------------------------------------------------- */
 .newPlaylistPage h1 {
   color: var(--active-menu-bg);
@@ -476,14 +471,14 @@ li p:nth-of-type(2):not(.stories), li p:nth-of-type(2):not(.makeAPlaylistBtn), l
     z-index: 960;
   }
 
-form {
+.newPlaylistPage form {
     display: flex;
     flex-direction: column;
     align-items: center;
     padding: 3em;
   }
 
-form h2 {
+.newPlaylistPage form h2 {
     display: flex;
     justify-content: center;
     width: max-content;
@@ -559,10 +554,11 @@ form:invalid [type="submit"] {
 }
 /* ---------------------------- EINDE ADD A PLAYLIST -------------------------------------------------------------------------------------------------------------- */
 .heart,
-.redHeart {
-    bottom: 1em;
+.filledHeart {
+    bottom: 0.5em;
+    cursor: pointer;
     position: absolute;
-    right: 1em;
+    right: 0.5em;
   }
 
 .phases {
@@ -573,7 +569,7 @@ form:invalid [type="submit"] {
     margin: 1em;
     overflow-x: auto;
     overflow-y: hidden;
-    width: 20em;
+    width: 25em;
     -webkit-overflow-scrolling: touch;
     scrollbar-width: none;
     -ms-overflow-style: none;
@@ -606,6 +602,18 @@ form:invalid [type="submit"] {
   \\    ||   ((   )) ||_// || ||==   \\ 
  \_))   ||    \\_//  || \\ || ||___ \_)) */
 
+#selection {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 1em;
+}
+
+#selection a {
+  padding: 0.8em;
+}
+
+
 #languageSelect {
     display: flex;
     flex-direction: row;
@@ -633,10 +641,6 @@ form:invalid [type="submit"] {
     padding: 0.2em 0.2em 0 0;
   }
 
-section:nth-of-type(3) a {
-    margin: 1em;
-  }
-
 .stories {
     display: flex;
     flex-direction: row;
@@ -650,12 +654,12 @@ section:nth-of-type(3) a {
     flex-direction: row;
     height: 8em;
     margin: 1em;
-    max-width: 30em;
+    min-width: 25em;
     padding: 0.5em;
     position: relative;
   }
 
-.stories img {
+.stories img:not(#storyFlag){
     border-radius: var(--border);
     height: 7em;
     width: 7em;
@@ -664,6 +668,7 @@ section:nth-of-type(3) a {
 .storyInfo {
     display: flex;
     flex-direction: column;
+    width: max-content;
   }
 
 .stories p:nth-of-type(1) {
@@ -671,11 +676,11 @@ section:nth-of-type(3) a {
   }
 
 .stories p:nth-of-type(2) {
-    font-size: 11px;
+    font-size: 13px;
     line-height: 1.3em;
-    padding-left: 0.5em;
-    max-width: 15em;
-  }
+    margin: 0.5em;
+    width: 30em;
+  } 
 
 #storyFlag {
     height: 1em;
@@ -708,27 +713,22 @@ section:nth-of-type(3) a {
     right: 1em;
   }
 
-.pages {
-    display: flex;
-    flex-direction: row;
-    gap: 3em;
-    justify-content: center;
-  }
-
-#next,
-#previous {
-    background: var(--contrast);
-    border: none;
-    border-radius: var(--border);
-    color: var(--active-menu-bg);
-    height: 2em;
-    width: 4em;
-  }
-
 .back-icon {
     position: absolute;
     top: 2.5em;
   }
+
+/* SPECIAL PLAYLISTS: LIKED AND SUGGESTED */
+
+.noPlaylist {
+  color: var(--active-menu-bg);
+  font-weight: bold;
+  font-size: 15px;
+  margin: 2em;
+}
+
+/* END SPECIAL PLAYLISTS */
+
 
 /*___  __    __        __  ______   ___   ____  __  ____  __ 
  // \\ ||    ||       (( \ | || |  // \\  || \\ || ||    (( \
