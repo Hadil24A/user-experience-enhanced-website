@@ -44,7 +44,7 @@ app.get("/", function (request, response) {
     });   
   });
   
-  let favourites = {};
+  let favourites = [];
 
   app.post('/:playlistId/like-or-unlike', function(request, response) {
       let playlistId =  Number(request.params.playlistId);
@@ -53,6 +53,7 @@ app.get("/", function (request, response) {
   
       if (action === 'like') {
           favourites[playlistId] = true;
+
       } else if (action === 'unlike') {
           favourites[playlistId] = false;
       }
@@ -60,19 +61,18 @@ app.get("/", function (request, response) {
       response.redirect(303, '/lessons');
   });
   
-  
       // if (request.body.enhanced) {
       //     response.render('playlist');
       // } else {
       //     response.redirect(303, '/lessons');
       // }
 
-  app.get("/stories", function (request, response) {      
+  app.get("/allStories", function (request, response) {      
     Promise.all([
       fetchJson('https://fdnd-agency.directus.app/items/tm_story'),
       fetchJson('https://fdnd-agency.directus.app/items/tm_language'),
       fetchJson('https://fdnd-agency.directus.app/items/tm_audio')]).then(([storyData, languageData, playlistData, audioData]) => {    
-      response.render('stories', {
+      response.render('allStories', {
         stories: storyData.data, 
         language: languageData.data,
         playlist: playlistData.data,

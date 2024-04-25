@@ -1,0 +1,36 @@
+<article class="likedPlaylists">
+    <% let likedPlaylists = playlist.filter(playlist => favourites[playlist.id]); %> 
+    <% if (likedPlaylists.filter(playlistId => favourites[playlistId.id]).length > 0) { %>
+      <ul class="playlist">
+        <% likedPlaylists.forEach(playlist => { %>
+        <li>
+          <% if (playlist.image) { %>
+            <picture>
+                <source srcset="https://fdnd-agency.directus.app/assets/<%= playlist.image.id %>.avif" type="image.avif">
+                <source srcset="https://fdnd-agency.directus.app/assets/<%= playlist.image.id %>.webp" type="image.webp">
+                    <img src="https://fdnd-agency.directus.app/assets/<%= playlist.image.id %>" alt="playlist" height="<%= playlist.image.height %>" width="<%= playlist.image.width %>">
+            </picture>
+                    <% } else { %>
+            <picture>
+                <img src="./images/placeholder.png" alt="placeholder" width="144">
+            </picture>
+          <% } %>    
+          
+          <p class="playlistTitle"><%= playlist.title %></p>
+          <a href="#" class="playPlaylist" type="button"><%- include('./playbuttonSVG') %> 
+          <p>31 min. 55sec</p> </a>
+  
+          <form method="POST" action="/<%= playlist.id %>/like-or-unlike">
+            <input type="hidden" name="action" value="like">
+            <button class="like-button" title="like playlist" type="submit" name="action" value="like">                                        
+              <%- include('./filledHeartSVG') %>
+            </button>
+          </form>
+        </li>
+        <% }) %>
+    </ul>
+    <% } %>         
+    </article>
+  <% if (!playlist.filter((playlist) => favourites[playlist.id]).length) { %>
+    <p class="noPlaylist">You currently have no liked playlists.</p>
+  <% } %> 

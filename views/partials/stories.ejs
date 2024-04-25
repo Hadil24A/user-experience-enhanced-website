@@ -1,0 +1,29 @@
+<ul class="stories">
+<% stories.forEach(story => { %>
+    <li>
+        <% if (story.image) { %>
+            <picture>
+                <source srcset="https://fdnd-agency.directus.app/assets/<%= story.image.id %>.avif" type="image/avif">
+                <source srcset="https://fdnd-agency.directus.app/assets/<%= story.image.id %>.webp" type="image/webp">
+                    <img src="https://fdnd-agency.directus.app/assets/<%= story.image.id %>"alt="story" height="<%= story.image.height %>" width="<%= story.image.width %>"> 
+            </picture>
+            <%  } else { %>
+            <picture>
+                <img src=./images/placeholder.png alt="placeholder "width="144">
+            </picture>
+        <% } %> 
+        <div class="storyInfo">
+            <p><strong><%= story.title %></strong></p>
+            <p><%= story.summary %></p>
+
+            <a href="#" class="playStory"> <%- include('./playbutton2SVG') %>
+            <p>3 min. 5sec</p></a>  
+        </div>
+        <picture>
+            <img src="/images/britishFlag.png" alt="flag" id="storyFlag">
+        </picture>
+        <button class="downloadStory"> <%- include('./downloadSVG') %> </button>
+        <button class="addToPlaylist"> <%- include('./addSVG') %> </button>
+    </li>
+<% }) %> 
+</ul> 

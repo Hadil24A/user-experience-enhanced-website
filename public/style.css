@@ -754,21 +754,21 @@ form:invalid [type="submit"] {
     margin: 2em;
     padding: 0.2em;
     width: 30em;
-  }
+}
 
 input:focus {
     border: solid 5px var(--btn-bg);
-  }
+}
 
 .filters {
     border: none;
     margin: 2em;
-  }
+}
 
 select {
     background: var(--contrast);
     border-radius: var(--border);
-    color: var(--active-menu-bg);
+    color: var(--menu-bg);
     margin: 0.5em;
     padding: 0.2em;
-  }
+}
