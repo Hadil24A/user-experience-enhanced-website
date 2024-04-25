@@ -105,12 +105,12 @@ body {
     background-position: center;
     background-repeat: no-repeat;
     height: 100dvh;  
-  }
+}
 .lessonsPage, .newPlaylistPage {
     background: var(--method-bg);
     min-height: 100%;
     width: 100%;
-  }
+}
 /*__  __   ___   ___  ___  ____    ____   ___    ___   ____
   ||  ||  // \\  ||\\//|| ||       || \\ // \\  // \\ ||   
   ||==|| ((   )) || \/ || ||==     ||_// ||=|| (( ___ ||== 
@@ -129,11 +129,12 @@ body {
     margin: auto;
     margin-top: 2em;
     padding: 1em;
-  }
+}
 
 .listeningTimer {
     counter-reset: p calc( var(--p) );
-  }
+    padding: 0.5em;
+}
 
 .listeningTimer::after {
     color: var(--menu-clr);
@@ -141,12 +142,13 @@ body {
     font-size:20px;
     font-variant:tabular-nums;
     height: 2em;
-  }
+}
 
 .listeningTimer:hover {
     --p:100;
     transition:--p 10s linear;
-  }
+    scale: 2;
+}
 
 .homescreen section p {
     color: var(--menu-clr);
@@ -156,7 +158,7 @@ body {
     syntax:"<number>";
     inherits:true;
     initial-value:0;
-  }
+}
 
 .start-text {
     background: var(--menu-clr);
@@ -165,8 +167,7 @@ body {
     padding: 0.5em;
     width: 14em;
     margin: auto;
-    margin-top: 6em;
-  }
+}
 
 #start {
     background: var(--lessons-btn-bg);
@@ -224,7 +225,7 @@ a {
 
 button p {
     color: var(--menu-clr);
-  }
+}
 
 /*__  __  ___  __ __ __   ___   ___  ______ __   ___   __  __
   ||\ || // \\ || || ||  // \\ // \\ | || | ||  // \\  ||\ ||
@@ -239,7 +240,7 @@ button p {
     margin: 5px auto;
     transition: all 0.3s ease-in-out;
     width: 25px;
-  }
+}
 
 .navigatie {
     background: var(--menu-bg);
@@ -252,40 +253,40 @@ button p {
     position: fixed;
     right: 1em;
     z-index: 999;
-  }
+}
 
 .navigatie {
     display: block;
-  }
+}
   
 .navigatie.active {
     background-color: var(--active-menu-bg);
-  }
+}
 
 .navigatie.active .bar:nth-child(2) {
   opacity: 0;
-  }
+}
 
 .navigatie.active .bar:nth-child(1) {
   background-color: var(--active-menu-clr);
   transform: translateY(8px) rotate(45deg);
-  }
+}
 
 .navigatie.active .bar:nth-child(3) {
   background-color: var(--active-menu-clr);
   transform: translateY(-8px) rotate(-45deg);
-  }
+}
 
 .home-menu {
   visibility: hidden;
-  }
+}
 
 .home-menu-active {
     background-color: var(--menu-overlay-bg);
     border: none;
     visibility: visible;
     z-index: 648;
-  }
+}
 
 dialog {
     display: grid;
@@ -295,7 +296,7 @@ dialog {
     justify-content: center;
     padding: 3em;
     width: 100%;
-  }
+}
 
 dialog a {
     align-items: center;
@@ -307,35 +308,35 @@ dialog a {
     justify-content: center;
     padding: 1em;
     text-decoration: none;
-  }
+}
 
 dialog a:nth-of-type(1) {
     background: var(--home-btn-bg);
-  }
+}
 
 dialog a:nth-of-type(2) {
     background: var(--testing-btn-bg);
-  }
+}
 
 dialog a:nth-of-type(3) {
     background: var(--lessons-btn-bg);
-  }
+}
 
 dialog a:nth-of-type(4) {
     background: var(--statistics-btn-bg);
-  }
+}
 
 dialog a:nth-of-type(5) {
     background: var(--profile-btn-bg);
-  }
+}
 
 dialog p {
     color: var(--active-menu-bg);
-  }
+}
 
 .activePage {
     border: solid 5px var(--active-menu-bg);
-  }
+}
 
 /*__     ____  __   __    ___   __  __  __ 
   ||    ||    (( \ (( \  // \\  ||\ || (( \
@@ -405,7 +406,7 @@ header {
     flex-direction: row;
     flex-wrap: wrap;
     list-style: none;
-  }
+}
 
 .ownPlaylist li,
 .playlist li {
@@ -418,14 +419,14 @@ header {
     padding: 0.5em;
     position: relative;
     width: 10em;
-  }
+}
 
 .ownPlaylist img,
 .playlist img {
     border-radius: var(--border);
     height: 9em;
     max-width: 100%;
-  }
+}
 
 .playPlaylist {
     bottom: 0.5em;
@@ -434,7 +435,7 @@ header {
     gap: 0.5em;
     position: absolute;
     width: max-content;
-  }
+}
 
 .playPlaylist p, .playStory p {
   font-size: 12px;
@@ -443,7 +444,7 @@ header {
 
 .playlistTitle {
     font-weight: bold;
-  }
+}
 /* ------------------------------------------------------------- ADD A PLAYLIST -------------------------------------------------------------- */
 .newPlaylistPage h1 {
   color: var(--active-menu-bg);
@@ -462,20 +463,20 @@ header {
     top: 1em;
     width: max-content;
     z-index: 960;
-  }
+}
 
 .newPlaylistPage form {
     display: flex;
     flex-direction: column;
     align-items: center;
     padding: 3em;
-  }
+}
 
 .newPlaylistPage form h2 {
     display: flex;
     justify-content: center;
     width: max-content;
-  }
+}
 
 #submitPL, 
 #showPL {
@@ -486,11 +487,11 @@ header {
     cursor: pointer;
     height: 2.5em;
     padding: 0.2em;
-  }
+}
 
 #submitPL {
     width: 20em;
-  }
+}
 
 #showPL {
     padding: 0.2em;
@@ -498,12 +499,12 @@ header {
     right: 1em;
     top: 2em;
     width: max-content;
-  }
+}
 
 .newPlaylistPage img {
     display: none;
     width: 100%;
-  }
+}
 
 #playlistName {
     border: none;
@@ -556,7 +557,21 @@ form:invalid [type="submit"] {
     cursor: pointer;
     position: absolute;
     right: 0.5em;
-  }
+    stroke: var(--menu-bg);
+}
+
+.heart:hover {
+  scale: 1.2;
+}
+
+.heart:focus {
+  stroke: var(--contrast);
+}
+
+.heart:active {
+  fill: var(--contrast);
+  stroke: var(--contrast);
+}
 
 .phases {
     counter-reset: list-counter;
@@ -569,9 +584,8 @@ form:invalid [type="submit"] {
     width: 25em;
     -webkit-overflow-scrolling: touch;
     scrollbar-width: none;
-    -ms-overflow-style: none;
-  
-  }
+    -ms-overflow-style: none;  
+}
 
 #listening,
 #locked {
@@ -583,11 +597,11 @@ form:invalid [type="submit"] {
     margin: 1em;
     min-width: 15em;
     padding: 4px;
-  }
+}
 
  .phases #locked {
-  opacity: 0.7;
- } 
+    opacity: 0.7;
+} 
 
 #listening p,
 #locked p {
