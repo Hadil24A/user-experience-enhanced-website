@@ -8,6 +8,8 @@ let app = express();
 
 let newPlaylist = []  // Niewe plylist aanmaken
 
+let favourites = {};
+
 app.set("view engine", "ejs");
 
 app.set("views", "./views");
@@ -20,46 +22,49 @@ app.use(express.urlencoded({ extended: true }));
    
 app.get("/", function (request, response) {      
     response.render("homepage", {});          
-  });
+  });  
 
   app.get("/testing", function (request, response) {      
     response.send("testing");         
-  });
+  });  
       
   app.get("/lessons", function (request, response) {      
     Promise.all([
-      fetchJson('https://fdnd-agency.directus.app/items/tm_story?fields=*,image.id,image.height,image.width'),
-      fetchJson('https://fdnd-agency.directus.app/items/tm_language'),
-      fetchJson('https://fdnd-agency.directus.app/items/tm_playlist?fields=*,image.id,image.height,image.width'),
-      fetchJson('https://fdnd-agency.directus.app/items/tm_audio')
+        fetchJson('https://fdnd-agency.directus.app/items/tm_story?fields=*,image.id,image.height,image.width'),
+        fetchJson('https://fdnd-agency.directus.app/items/tm_language'),
+        fetchJson('https://fdnd-agency.directus.app/items/tm_playlist?fields=*,image.id,image.height,image.width'),
+        fetchJson('https://fdnd-agency.directus.app/items/tm_audio')
     ]).then(([storyData, languageData, playlistData, audioData]) => {  
-      response.render('lessons', {        
-        stories: storyData.data, 
-        language: languageData.data,
-        playlist: playlistData.data, 
-        audio: audioData.data,
-        favourites: favourites,
-        newPlaylists: newPlaylist
-      });  
-    });   
-  });
-  
-  let favourites = [];
+        response.render('lessons', {        
+            stories: storyData.data, 
+            language: languageData.data,
+            playlist: playlistData.data, 
+            audio: audioData.data,
+            favourites: favourites,
+            newPlaylists: newPlaylist
+        });    
+    });     
+});  
 
-  app.post('/:playlistId/like-or-unlike', function(request, response) {
-      let playlistId =  Number(request.params.playlistId);
-      let action = request.body.action; 
-      console.log(action, playlistId);
-  
-      if (action === 'like') {
-          favourites[playlistId] = true;
+app.post('/:playlistId/like-or-unlike', function(request, response) {
+    let playlistId = Number(request.params.playlistId);
+    let action = request.body.action;
+    console.log(action, playlistId);
 
-      } else if (action === 'unlike') {
-          favourites[playlistId] = false;
-      }
-  
-      response.redirect(303, '/lessons');
-  });
+    if (action === 'like') {
+        favourites[playlistId] = true;
+    } else if (action === 'unlike') {
+        favourites[playlistId] = false;
+    }
+
+    response.redirect(303, '/lessons');
+});
+
+//   app.get('/likedPlaylists', function(request, response) {
+//     let likedPlaylists = Object.keys(favourites).filter(playlistId => favourites[playlistId]);
+//     response.render('likedPlaylists', { likedPlaylists: likedPlaylists });
+// });
+
   
       // if (request.body.enhanced) {
       //     response.render('playlist');

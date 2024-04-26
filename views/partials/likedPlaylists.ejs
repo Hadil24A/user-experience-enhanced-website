@@ -1,8 +1,7 @@
 <article class="likedPlaylists">
-    <% let likedPlaylists = playlist.filter(playlist => favourites[playlist.id]); %> 
-    <% if (likedPlaylists.filter(playlistId => favourites[playlistId.id]).length > 0) { %>
-      <ul class="playlist">
-        <% likedPlaylists.forEach(playlist => { %>
+  <% if (playlist.filter(playlistItem => favourites[playlistItem.id]).length > 0) { %>
+    <ul class="playlist">
+      <% playlist.filter(playlistItem => favourites[playlistItem.id]).forEach(playlistItem => { %>
         <li>
           <% if (playlist.image) { %>
             <picture>
@@ -23,14 +22,13 @@
           <form method="POST" action="/<%= playlist.id %>/like-or-unlike">
             <input type="hidden" name="action" value="like">
             <button class="like-button" title="like playlist" type="submit" name="action" value="like">                                        
-              <%- include('./filledHeartSVG') %>
+              <%- include('./heartSVG') %>
             </button>
           </form>
         </li>
-        <% }) %>
+      <% }) %>
     </ul>
-    <% } %>         
-    </article>
-  <% if (!playlist.filter((playlist) => favourites[playlist.id]).length) { %>
-    <p class="noPlaylist">You currently have no liked playlists.</p>
-  <% } %> 
+
+    <% } else { %>
+      <p class="noPlaylist">You currently have no liked playlists.</p>
+    <% } %> 

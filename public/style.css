@@ -551,8 +551,7 @@ form:invalid [type="submit"] {
   padding: 1em;
 }
 /* ---------------------------- EINDE ADD A PLAYLIST -------------------------------------------------------------------------------------------------------------- */
-.heart,
-.filledHeart {
+.heart {
     bottom: 0.5em;
     cursor: pointer;
     position: absolute;
