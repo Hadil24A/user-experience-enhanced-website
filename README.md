@@ -1,7 +1,7 @@
 > _Fork_ deze leertaak en ga aan de slag. Onderstaande outline ga je gedurende deze taak in jouw eigen GitHub omgeving uitwerken. De instructie vind je in: [docs/INSTRUCTIONS.md](docs/INSTRUCTIONS.md)
 
-# Titel
-<!-- Geef je project een titel en schrijf in één zin wat het is -->
+# Tumi Mundo
+<img src= "https://github.com/Hadil24A/user-experience-enhanced-website/assets/144008714/940837e8-371a-4e78-8b46-b5efd5c26045" width="400px">
 
 ## Inhoudsopgave
 
