@@ -6,7 +6,7 @@ import fetchJson from "./helpers/fetch-json.js";
 
 let app = express();
 
-let newPlaylist = []  // Niewe plylist aanmaken
+let newPlaylist = []  // Niewe playlist aanmaken
 
 let favourites = {};
 
@@ -28,44 +28,43 @@ app.get("/", function (request, response) {
     response.send("testing");         
   });  
       
-  app.get("/lessons", function (request, response) {      
+  app.get("/lessons", function (request, response) {
     Promise.all([
         fetchJson('https://fdnd-agency.directus.app/items/tm_story?fields=*,image.id,image.height,image.width'),
         fetchJson('https://fdnd-agency.directus.app/items/tm_language'),
         fetchJson('https://fdnd-agency.directus.app/items/tm_playlist?fields=*,image.id,image.height,image.width'),
         fetchJson('https://fdnd-agency.directus.app/items/tm_audio')
-    ]).then(([storyData, languageData, playlistData, audioData]) => {  
-        response.render('lessons', {        
-            stories: storyData.data, 
+    ]).then(([storyData, languageData, playlistData, audioData]) => {
+        let likedPlaylists = playlistData.data.filter(playlist => favourites[playlist.id]);
+        let playlistIds = playlistData.data.map(playlist => playlist.id);
+
+        response.render('lessons', {
+            stories: storyData.data,
             language: languageData.data,
-            playlist: playlistData.data, 
+            playlist: playlistData.data,
             audio: audioData.data,
             favourites: favourites,
-            newPlaylists: newPlaylist
-        });    
-    });     
-});  
-
-app.post('/:playlistId/like-or-unlike', function(request, response) {
-    let playlistId = Number(request.params.playlistId);
-    let action = request.body.action;
-    console.log(action, playlistId);
-
-    if (action === 'like') {
-        favourites[playlistId] = true;
-    } else if (action === 'unlike') {
-        favourites[playlistId] = false;
-    }
-
-    response.redirect(303, '/lessons');
+            likedPlaylists: likedPlaylists, 
+            newPlaylists: newPlaylist,
+            playlistIds: playlistIds
+        });
+    });
 });
 
-//   app.get('/likedPlaylists', function(request, response) {
-//     let likedPlaylists = Object.keys(favourites).filter(playlistId => favourites[playlistId]);
-//     response.render('likedPlaylists', { likedPlaylists: likedPlaylists });
-// });
+app.post('/like-or-unlike/:playlistId', function(request, response) {
+  let playlistId = Number(request.params.playlistId);
+  let action = request.body.action;
+  console.log(action, playlistId);
 
-  
+  if (action === 'like') {
+      favourites[playlistId] = true;
+  } else if (action === 'unlike') {
+      delete favourites[playlistId];
+  }
+
+  response.redirect(303, '/lessons');
+});
+
       // if (request.body.enhanced) {
       //     response.render('playlist');
       // } else {

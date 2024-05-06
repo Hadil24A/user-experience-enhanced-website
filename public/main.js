@@ -1,3 +1,11 @@
+if (document.startViewTransition) { 
+    document.startViewTransition(function() {
+        document.querySelector('.heart').innerHTML = responseHTML
+    });
+} else { 
+    document.querySelector('.heart').innerHTML = responseHTML
+}
+
 let navigatie = document.querySelector(".navigatie");
 let menu = document.querySelector(".home-menu");
 

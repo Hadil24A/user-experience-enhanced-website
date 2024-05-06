@@ -551,7 +551,7 @@ form:invalid [type="submit"] {
   padding: 1em;
 }
 /* ---------------------------- EINDE ADD A PLAYLIST -------------------------------------------------------------------------------------------------------------- */
-.heart {
+.heart, .filledHeart {
     bottom: 0.5em;
     cursor: pointer;
     position: absolute;
@@ -559,7 +559,11 @@ form:invalid [type="submit"] {
     stroke: var(--menu-bg);
 }
 
-.heart:hover {
+.filledHeart {
+  stroke: none;
+}
+
+.heart:hover, .filledHeart:hover {
   scale: 1.2;
 }
 
@@ -732,7 +736,6 @@ form:invalid [type="submit"] {
 
 .noPlaylist {
   color: var(--active-menu-bg);
-  font-weight: bold;
   font-size: 15px;
   margin: 2em;
 }

@@ -1,6 +1,6 @@
-<% if (playlist.filter(playlistItem => !favourites[playlistItem.id]).length > 0) { %>
-    <ul class="playlist">
-        <% playlist.filter(playlistItem => !favourites[playlistItem.id]).forEach(playlistItem => { %>
+<ul class="playlist">
+    <% playlist.forEach(playlist => { %>
+        <a href="#">
             <li>
                 <% if (playlist.image) { %> 
                     <picture>
@@ -15,28 +15,28 @@
                     </picture>
                 <% } %>    
                 <p class="playlistTitle"><%= playlist.title %></p>
-                <a href="#" class="playPlaylist" type="button"><%- include('./playbuttonSVG') %> 
-                <p>31 min. 55sec</p> </a>
+                <a href="#" class="playPlaylist" type="button"> 
+                    <%- include('./playbuttonSVG') %> 
+                    <p>31 min. 55sec</p> 
+                </a>
 
-                <form method="POST" action="/<%= playlist.id %>/like-or-unlike">
+                <form method="POST" action="/like-or-unlike/<%= playlist.id %>">
                     <% if (!favourites[playlist.id]) { %>
                         <input type="hidden" name="action" value="like">
-                        <button title="like playlist" type="submit" name="action" value="like">
+                        <button title="like playlist" type="submit">
                         <%- include('./heartSVG') %>
                         </button>
-                    
                     <% } else { %>
-                        <button class="unlike-button" title="unlike playlist" type="submit" name="action" value="unlike">                                        
-                            <%- include('./HeartSVG') %>
+                        <input type="hidden" name="action" value="unlike">
+                        <button class="unlike-button" title="unlike playlist" type="submit">                                        
+                            <%- include('./filledHeartSVG') %>
                         </button>
                     <% } %>
                 </form>
-            </li>
+            </li> 
+        </a>
         <% }) %>
     </ul>
-
-<% } else { %>
-    <p class="no-playlist">No suggested playlists available.</p>
-<% } %>
-
-
+    <% if (!playlist.length) { %>
+        <p class="noPlaylist">No suggested playlists available.</p>
+    <% } %>
