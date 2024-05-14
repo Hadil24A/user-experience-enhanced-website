@@ -1,86 +1,116 @@
-<%- include('partials/head') %>
-<%- include('./partials/navigatie', {current: '/lessons'}); %>
+<%- include('partials/head') %> <%- include('./partials/navigatie', {current:
+'/lessons'}); %>
 <main class="lessonsPage">
-    <header>
-        <h1>Lessons</h1>
-        <ul class="phases">
-            <li id="listening"><p>1.</p><p>Listening</p> <%- include('./partials/listeningSVG') %> </li>
-            <li id="locked"><p>2.</p><p>Locked</p> <%- include('./partials/lockedSVG') %> </li>
-        </ul>
-    </header>
+  <header>
+    <h1>Lessons</h1>
+    <ul class="phases">
+      <li id="listening">
+        <p>1.</p>
+        <p>Listening</p>
+        <%- include('./partials/listeningSVG') %>
+      </li>
+      <li id="locked">
+        <p>2.</p>
+        <p>Locked</p>
+        <%- include('./partials/lockedSVG') %>
+      </li>
+    </ul>
+  </header>
 
-    <!-- OWN PLAYLIST -->
+  <!-- OWN PLAYLIST -->
 
-    <section>
-        <h2>Own playlist</h2>
-        <ul class="ownPlaylist">
-            <a href="/new-playlist">
-                <li class="makeAPlaylistBtn"> <%- include('./partials/plusSVG') %>
-                    <p>Make a playlist!</p>
-                    <p>Add your favourite stories in one playlist</p>
-                </li>
-            </a>
-            <% playlist.forEach(playlist => { %>
-                <li>
-                    <% if (playlist.image) { %> 
-                        <picture>
-                            <source srcset="https://fdnd-agency.directus.app/assets/<%= playlist.image.id %>?format=avif" type="image/avif">
-                            <source srcset="https://fdnd-agency.directus.app/assets/<%= playlist.image.id %>?format=webp" type="image/webp">
-                        <img src="https://fdnd-agency.directus.app/assets/<%= playlist.image.id %>" alt="playlist" 
-                            height="<%= playlist.image.height %>" width="<%= playlist.image.width %>">
-                        </picture>
-                        <%  } else { %>
-                            <picture>
-                                <img src="./images/placeholder.png" alt="placeholder" width="144">
-                            </picture>
-                    <% } %>    
-                    <p class="playlistTitle"><%=playlist.title%></p>
-                    <a href="#" class="playPlaylist" type="button"><%- include('./partials/playbuttonSVG') %>
-                    <p>31 min. 55sec</p> </a>
-                </li>
-            <% }) %>
+  <section>
+    <h2>Own playlist</h2>
+    <ul class="ownPlaylist">
+      <a href="/new-playlist">
+        <li class="makeAPlaylistBtn">
+          <%- include('./partials/plusSVG') %>
+          <p>Make a playlist!</p>
+          <p>Add your favourite stories in one playlist</p>
+        </li>
+      </a>
+      <% playlist.forEach(playlist => { %>
+      <li>
+        <% if (playlist.image) { %>
+        <picture>
+          <source
+            srcset="https://fdnd-agency.directus.app/assets/<%= playlist.image.id %>?format=avif"
+            type="image/avif"
+          />
+          <source
+            srcset="https://fdnd-agency.directus.app/assets/<%= playlist.image.id %>?format=webp"
+            type="image/webp"
+          />
+          <img
+            src="https://fdnd-agency.directus.app/assets/<%= playlist.image.id %>"
+            alt="playlist"
+            height="<%= playlist.image.height %>"
+            width="<%= playlist.image.width %>"
+          />
+        </picture>
+        <% } else { %>
+        <picture>
+          <img src="./images/placeholder.png" alt="placeholder" width="144" />
+        </picture>
+        <% } %>
+        <p class="playlistTitle"><%=playlist.title%></p>
+        <a href="#" class="playPlaylist" type="button"
+          ><%- include('./partials/playbuttonSVG') %>
+          <p>31 min. 55sec</p>
+        </a>
+      </li>
+      <% }) %> <% newPlaylists.forEach(newPlaylists => { %>
+      <li><%=newPlaylists%></li>
+      <% }) %>
+    </ul>
+  </section>
 
-            <% newPlaylists.forEach(newPlaylists => { %>
-                <li><%=newPlaylists%> </li>
-            <% }) %>
-        </ul>
-    </section>
+  <!-- ALL STORIES -->
 
-    <!-- ALL STORIES -->
+  <section>
+    <h3>All stories</h3>
+    <div id="selection">
+      <article id="languageSelect">
+        <% language.forEach(language => { %>
+        <button id="languageButton" type="button">
+          <% if (language.flag) { %>
+          <picture>
+            <source
+              srcset="https://fdnd-agency.directus.app/assets/<%= language.flag %>?format=avif"
+              type="image/avif"
+            />
+            <source
+              srcset="https://fdnd-agency.directus.app/assets/<%= language.flag %>?format=webp"
+              type="image/webp"
+            />
+            <img
+              src="https://fdnd-agency.directus.app/assets/<%= language.flag %>"
+              alt="flag"
+            />
+            <% } %>
+          </picture>
+          <p><%- language.language %></p>
+        </button>
+        <% }) %>
+      </article>
 
-    <section>
-        <h3>All stories</h3>
-        <div id="selection">
-            <article id="languageSelect">
-                <% language.forEach(language => { %>
-                    <button id="languageButton" type="button">  
-                        <% if (language.flag) { %>
-                        <picture>
-                            <source srcset="https://fdnd-agency.directus.app/assets/<%= language.flag %>?format=avif" type="image/avif">
-                            <source srcset="https://fdnd-agency.directus.app/assets/<%= language.flag %>?format=webp" type="image/webp">
-                                <img src="https://fdnd-agency.directus.app/assets/<%= language.flag %>" alt="flag"> <% } %>
-                            </picture>
-                            <p><%- language.language %></p></button>
-                    <% }) %> 
-            </article>
+      <a href="/allStories">Show all</a>
+    </div>
+    <%- include('./partials/stories') %>
+  </section>
 
-            <a href="/allStories">Show all</a>
-        </div>
-            <%- include('./partials/stories') %>
-    </section>
+  <!-- LIKED PLAYLISTS -->
 
-    <!-- LIKED PLAYLISTS -->
+  <section>
+    <h4>Liked playlists</h4>
+    <%- include('./partials/likedPlaylists') %>
+  </section>
 
-    <section>
-        <h4>Liked playlists</h4>
-        <%- include('./partials/likedPlaylists') %>
-    </section>
-    
-    <!-- SUGGESTED PLAYLISTS -->
-    
-    <section>
-        <h5>Suggested playlists</h5>
-        <%- include('./partials/suggestedPlaylists') %>
-    </section>
+  <!-- SUGGESTED PLAYLISTS -->
+
+  <section>
+    <h5>Suggested playlists</h5>
+    <%- include('./partials/suggestedPlaylists') %>
+  </section>
 </main>
 <%- include('./partials/foot') %>
