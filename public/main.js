@@ -26,6 +26,10 @@ if (gsap) {
     });
 }
 
+let form = this 
+form.classList.add('isLoading')
+
+
 let imageUpload = document.getElementById('image-upload');
 if (imageUpload) {
 
@@ -49,8 +53,8 @@ if (imageUpload) {
     imageUpload.addEventListener("change", previewImage);
 }
 
-// let newPlaylist = []
-// if (newPlaylist) {
-// newPlaylist.push()
-// console.log(newPlaylist)
-// }
+let newPlaylist = []
+if (newPlaylist) {
+newPlaylist.push()
+console.log(newPlaylist)
+}

@@ -65,11 +65,11 @@ app.post('/like-or-unlike/:playlistId', function(request, response) {
   response.redirect(303, '/lessons');
 });
 
-      // if (request.body.enhanced) {
-      //     response.render('playlist');
-      // } else {
-      //     response.redirect(303, '/lessons');
-      // }
+  // if (request.body.enhanced) {
+  //     response.render('playlist');
+  // } else {
+  //     response.redirect(303, '/lessons');
+  // }
 
   app.get("/allStories", function (request, response) {      
     Promise.all([
@@ -84,11 +84,11 @@ app.post('/like-or-unlike/:playlistId', function(request, response) {
     });
   });
 
-  app.get("/add-a-playlist", function (request, response) {
-    response.render("add-a-playlist", {});
+  app.get("/new-playlist", function (request, response) {
+    response.render("new-playlist", {});
   })
 
-  app.post("/add-a-playlist", function (request, response) { 
+  app.post("/new-playlist", function (request, response) { 
     newPlaylist.push(request.body(newPlaylists))
     console.log(newPlaylist);
     response.redirect(303, '/lessons/');

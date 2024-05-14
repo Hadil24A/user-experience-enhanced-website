@@ -14,7 +14,7 @@
     <section>
         <h2>Own playlist</h2>
         <ul class="ownPlaylist">
-            <a href="/add-a-playlist">
+            <a href="/new-playlist">
                 <li class="makeAPlaylistBtn"> <%- include('./partials/plusSVG') %>
                     <p>Make a playlist!</p>
                     <p>Add your favourite stories in one playlist</p>
@@ -24,8 +24,8 @@
                 <li>
                     <% if (playlist.image) { %> 
                         <picture>
-                            <source srcset="https://fdnd-agency.directus.app/assets/<%= playlist.image.id %>.avif" type="image/avif">
-                            <source srcset="https://fdnd-agency.directus.app/assets/<%= playlist.image.id %>.webp" type="image/webp">
+                            <source srcset="https://fdnd-agency.directus.app/assets/<%= playlist.image.id %>?format=avif" type="image/avif">
+                            <source srcset="https://fdnd-agency.directus.app/assets/<%= playlist.image.id %>?format=webp" type="image/webp">
                         <img src="https://fdnd-agency.directus.app/assets/<%= playlist.image.id %>" alt="playlist" 
                             height="<%= playlist.image.height %>" width="<%= playlist.image.width %>">
                         </picture>
@@ -56,8 +56,8 @@
                     <button id="languageButton" type="button">  
                         <% if (language.flag) { %>
                         <picture>
-                            <source srcset="https://fdnd-agency.directus.app/assets/<%= language.flag %>.avif" type="image/avif">
-                            <source srcset="https://fdnd-agency.directus.app/assets/<%= language.flag %>.webp" type="image/webp">
+                            <source srcset="https://fdnd-agency.directus.app/assets/<%= language.flag %>?format=avif" type="image/avif">
+                            <source srcset="https://fdnd-agency.directus.app/assets/<%= language.flag %>?format=webp" type="image/webp">
                                 <img src="https://fdnd-agency.directus.app/assets/<%= language.flag %>" alt="flag"> <% } %>
                             </picture>
                             <p><%- language.language %></p></button>

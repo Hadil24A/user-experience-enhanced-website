@@ -4,8 +4,8 @@
             <li>
                 <% if (playlist.image) { %> 
                     <picture>
-                        <source srcset="https://fdnd-agency.directus.app/assets/<%= playlist.image.id %>.avif" type="image.avif">
-                        <source srcset="https://fdnd-agency.directus.app/assets/<%= playlist.image.id %>.webp" type="image.webp">        
+                        <source srcset="https://fdnd-agency.directus.app/assets/<%= playlist.image.id %>?format=avif" type="image.avif">
+                        <source srcset="https://fdnd-agency.directus.app/assets/<%= playlist.image.id %>?format=webp" type="image.webp">        
                             <img src="https://fdnd-agency.directus.app/assets/<%= playlist.image.id %>" alt="playlist" 
                         height="<%= playlist.image.height %>" width="<%= playlist.image.width %>"> 
                     </picture>
